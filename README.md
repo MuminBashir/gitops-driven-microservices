@@ -15,79 +15,79 @@ But from a **technical perspective**, modern boutique apps are **not built as a 
 They are built using **Microservices Architecture**.
 
 > [!TIP]
-># What is Microservices?
 >
->**Microservices** is an architectural style where an application is broken into **small, independent services**, and each service:
+> # What is Microservices?
 >
->- Handles a **specific business function**
->- Runs independently
->- Communicates via APIs
+> **Microservices** is an architectural style where an application is broken into **small, independent services**, and each service:
 >
->👉 Instead of one big application (monolith), you have **multiple small services working together**.
+> - Handles a **specific business function**
+> - Runs independently
+> - Communicates via APIs
 >
->---
+> 👉 Instead of one big application (monolith), you have **multiple small services working together**.
 >
-># Online Boutique = Microservices in Action
+> ---
 >
->This online boutique app is made up of multiple services like:
+> # Online Boutique = Microservices in Action
 >
->### 🧾 Product Catalog Service
+> This online boutique app is made up of multiple services like:
 >
->- Manages product list, categories, pricing
+> ### 🧾 Product Catalog Service
 >
->### 🛒 Cart Service
+> - Manages product list, categories, pricing
 >
->- Handles user cart (add/remove items)
+> ### 🛒 Cart Service
 >
->### 💳 Payment Service
+> - Handles user cart (add/remove items)
 >
->- Processes payments (UPI, cards)
+> ### 💳 Payment Service
 >
->### 📦 Order Service
+> - Processes payments (UPI, cards)
 >
->- Manages order lifecycle
+> ### 📦 Order Service
 >
->### 👤 Frontend Service
+> - Manages order lifecycle
 >
->- Authentication & profiles
+> ### 👤 Frontend Service
 >
->### 🚚 Shipping Service
+> - Authentication & profiles
 >
->- Delivery tracking & logistics
+> ### 🚚 Shipping Service
 >
->### Etc..
+> - Delivery tracking & logistics
 >
->---
+> ### Etc..
 >
-># How These Services Communicate
+> ---
 >
->- REST APIs (HTTP)
->- gRPC (faster internal communication)
->- Message queues (Kafka / RabbitMQ)
+> # How These Services Communicate
 >
->👉 Example:
+> - REST APIs (HTTP)
+> - gRPC (faster internal communication)
+> - Message queues (Kafka / RabbitMQ)
 >
->- Cart service → calls Product service
->- Order service → calls Payment service
+> 👉 Example:
 >
->---
+> - Cart service → calls Product service
+> - Order service → calls Payment service
 >
-># Monolith vs Microservices
+> ---
 >
->### Monolithic App ❌
+> # Monolith vs Microservices
 >
->- Everything in one codebase
->- Hard to scale
->- Single failure affects whole system
+> ### Monolithic App ❌
 >
->### Microservices App ✅
+> - Everything in one codebase
+> - Hard to scale
+> - Single failure affects whole system
 >
->- Independent services
->- Easy to scale
->- Fault isolation
+> ### Microservices App ✅
 >
->👉 That’s why modern apps (like boutique apps) >use microservices.
-
+> - Independent services
+> - Easy to scale
+> - Fault isolation
+>
+> 👉 That’s why modern apps (like boutique apps) >use microservices.
 
 # **Architecture**
 
@@ -95,19 +95,19 @@ They are built using **Microservices Architecture**.
 
 ![image.png](docs/images/Architecture01.png)
 
-| **Service** | **Language** | **Description** |
-| --- | --- | --- |
-| [frontend](https://github.com/laxmikantagiri/Production-Grade_GitOps-Driven_Microservices-Demo/blob/main/src/frontend) | Go | Exposes an HTTP server to serve the website. Does not require signup/login and generates session IDs for all users automatically. |
-| [cartservice](https://github.com/laxmikantagiri/Production-Grade_GitOps-Driven_Microservices-Demo/blob/main/src/cartservice) | C# | Stores the items in the user's shopping cart in Redis and retrieves it. |
-| [productcatalogservice](https://github.com/laxmikantagiri/Production-Grade_GitOps-Driven_Microservices-Demo/blob/main/src/productcatalogservice) | Go | Provides the list of products from a JSON file and ability to search products and get individual products. |
-| [currencyservice](https://github.com/laxmikantagiri/Production-Grade_GitOps-Driven_Microservices-Demo/blob/main/src/currencyservice) | Node.js | Converts one money amount to another currency. Uses real values fetched from European Central Bank. It's the highest QPS service. |
-| [paymentservice](https://github.com/laxmikantagiri/Production-Grade_GitOps-Driven_Microservices-Demo/blob/main/src/paymentservice) | Node.js | Charges the given credit card info (mock) with the given amount and returns a transaction ID. |
-| [shippingservice](https://github.com/laxmikantagiri/Production-Grade_GitOps-Driven_Microservices-Demo/blob/main/src/shippingservice) | Go | Gives shipping cost estimates based on the shopping cart. Ships items to the given address (mock) |
-| [emailservice](https://github.com/laxmikantagiri/Production-Grade_GitOps-Driven_Microservices-Demo/blob/main/src/emailservice) | Python | Sends users an order confirmation email (mock). |
-| [checkoutservice](https://github.com/laxmikantagiri/Production-Grade_GitOps-Driven_Microservices-Demo/blob/main/src/checkoutservice) | Go | Retrieves user cart, prepares order and orchestrates the payment, shipping and the email notification. |
-| [recommendationservice](https://github.com/laxmikantagiri/Production-Grade_GitOps-Driven_Microservices-Demo/blob/main/src/recommendationservice) | Python | Recommends other products based on what's given in the cart. |
-| [adservice](https://github.com/laxmikantagiri/Production-Grade_GitOps-Driven_Microservices-Demo/blob/main/src/adservice) | Java | Provides text ads based on given context words. |
-| [loadgenerator](https://github.com/laxmikantagiri/Production-Grade_GitOps-Driven_Microservices-Demo/blob/main/src/loadgenerator) | Python/Locust | Continuously sends requests imitating realistic user shopping flows to the frontend. |
+| **Service**                                                                                                                                      | **Language**  | **Description**                                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| [frontend](https://github.com/laxmikantagiri/Production-Grade_GitOps-Driven_Microservices-Demo/blob/main/src/frontend)                           | Go            | Exposes an HTTP server to serve the website. Does not require signup/login and generates session IDs for all users automatically. |
+| [cartservice](https://github.com/laxmikantagiri/Production-Grade_GitOps-Driven_Microservices-Demo/blob/main/src/cartservice)                     | C#            | Stores the items in the user's shopping cart in Redis and retrieves it.                                                           |
+| [productcatalogservice](https://github.com/laxmikantagiri/Production-Grade_GitOps-Driven_Microservices-Demo/blob/main/src/productcatalogservice) | Go            | Provides the list of products from a JSON file and ability to search products and get individual products.                        |
+| [currencyservice](https://github.com/laxmikantagiri/Production-Grade_GitOps-Driven_Microservices-Demo/blob/main/src/currencyservice)             | Node.js       | Converts one money amount to another currency. Uses real values fetched from European Central Bank. It's the highest QPS service. |
+| [paymentservice](https://github.com/laxmikantagiri/Production-Grade_GitOps-Driven_Microservices-Demo/blob/main/src/paymentservice)               | Node.js       | Charges the given credit card info (mock) with the given amount and returns a transaction ID.                                     |
+| [shippingservice](https://github.com/laxmikantagiri/Production-Grade_GitOps-Driven_Microservices-Demo/blob/main/src/shippingservice)             | Go            | Gives shipping cost estimates based on the shopping cart. Ships items to the given address (mock)                                 |
+| [emailservice](https://github.com/laxmikantagiri/Production-Grade_GitOps-Driven_Microservices-Demo/blob/main/src/emailservice)                   | Python        | Sends users an order confirmation email (mock).                                                                                   |
+| [checkoutservice](https://github.com/laxmikantagiri/Production-Grade_GitOps-Driven_Microservices-Demo/blob/main/src/checkoutservice)             | Go            | Retrieves user cart, prepares order and orchestrates the payment, shipping and the email notification.                            |
+| [recommendationservice](https://github.com/laxmikantagiri/Production-Grade_GitOps-Driven_Microservices-Demo/blob/main/src/recommendationservice) | Python        | Recommends other products based on what's given in the cart.                                                                      |
+| [adservice](https://github.com/laxmikantagiri/Production-Grade_GitOps-Driven_Microservices-Demo/blob/main/src/adservice)                         | Java          | Provides text ads based on given context words.                                                                                   |
+| [loadgenerator](https://github.com/laxmikantagiri/Production-Grade_GitOps-Driven_Microservices-Demo/blob/main/src/loadgenerator)                 | Python/Locust | Continuously sends requests imitating realistic user shopping flows to the frontend.                                              |
 
 Screenshots:
 
@@ -163,10 +163,10 @@ There is **NO dedicated “orders database”**.
 **checkoutservice:**
 
 - Aggregates data from:
-    - cartservice
-    - paymentservice
-    - shippingservice
-    - emailservice
+  - cartservice
+  - paymentservice
+  - shippingservice
+  - emailservice
 - Simulates order placement
 - Does **not persist orders**
 
@@ -252,24 +252,23 @@ There is **NO dedicated “orders database”**.
 
 ## SUMMARY TABLE
 
-| Service | Persistent Storage | Type |
-| --- | --- | --- |
-| cartservice | ✅ Yes | Redis |
-| checkoutservice | ❌ No | Stateless |
-| productcatalogservice | ❌ No | In-memory JSON |
-| recommendationservice | ❌ No | Stateless |
-| paymentservice | ❌ No | Fake |
-| shippingservice | ❌ No | Fake |
-| emailservice | ❌ No | Fake |
-| adservice | ❌ No | In-memory |
-| frontend | ❌ No | Stateless |
-| currencyservice | ❌ No | In-memory |
-| loadgenerator | ❌ No | Stateless |
+| Service               | Persistent Storage | Type           |
+| --------------------- | ------------------ | -------------- |
+| cartservice           | ✅ Yes             | Redis          |
+| checkoutservice       | ❌ No              | Stateless      |
+| productcatalogservice | ❌ No              | In-memory JSON |
+| recommendationservice | ❌ No              | Stateless      |
+| paymentservice        | ❌ No              | Fake           |
+| shippingservice       | ❌ No              | Fake           |
+| emailservice          | ❌ No              | Fake           |
+| adservice             | ❌ No              | In-memory      |
+| frontend              | ❌ No              | Stateless      |
+| currencyservice       | ❌ No              | In-memory      |
+| loadgenerator         | ❌ No              | Stateless      |
 
 ---
 
 > “The demo intentionally keeps most services stateless to simplify deployment and focus on platform concerns like CI/CD, observability, scaling, and networking.”
-> 
 
 ---
 
@@ -277,11 +276,14 @@ There is **NO dedicated “orders database”**.
 
 ![Gitops Project.gif](docs/images/Gitops_Project.gif)
 
-![Gitops Project.drawio.png](docs/images/Gitops_Project.png)
+## ![Gitops Project.drawio.png](docs/images/Gitops_Project.png)
+
 ---
+
 ---
+
 ---
----
+
 # Implementation
 
 ## Install tools in Local Machine
@@ -308,7 +310,7 @@ Clone te repo , `cd` to `terraform` directory. Do
 
 ```bash
 terraform init
-Terraform plan 
+Terraform plan
 ```
 
 Verify the resources and then do
@@ -378,7 +380,7 @@ Do you want to copy existing state to the new backend?
   configured "s3" backend. Do you want to copy this state to the new "s3"
   backend? Enter "yes" to copy and "no" to start with an empty state.
 
-  Enter a value: 
+  Enter a value:
 ```
 
 Type “Yes”, The backend will move to s3.
@@ -393,7 +395,7 @@ SSH to the Bastion host from the same terraform directory as it creates the priv
 ssh -i bastion-key.pem ubuntu@<publicIP>
 ```
 
-Now install the below tools  in the Bastion Host:
+Now install the below tools in the Bastion Host:
 
 - AWS CLI
 - kubectl client
@@ -412,7 +414,7 @@ Do `aws configure` and set up with the access and secret access keys , You can u
 Then, import the kubeconfig file by putting the below command.
 
 ```bash
-aws eks update-kubeconfig --region <your-region> --name <your-cluster-name> 
+aws eks update-kubeconfig --region <your-region> --name <your-cluster-name>
 ```
 
 After added the context check:
@@ -448,82 +450,77 @@ eksctl utils associate-iam-oidc-provider \
 **Create IAM role using `eksctl`.**
 
 1. Download an IAM policy for the AWS Load Balancer Controller that allows it to make calls to AWS APIs on your behalf.
-    
-    ```bash
-    curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.14.1/docs/install/iam_policy.json
-    ```
-    
+
+   ```bash
+   curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.14.1/docs/install/iam_policy.json
+   ```
+
 2. Create an IAM policy using the policy downloaded in the previous step.
-    
-    ```bash
-    aws iam create-policy \
-        --policy-name AWSLoadBalancerControllerIAMPolicy \
-        --policy-document file://iam_policy.json
-    ```
-    
+
+   ```bash
+   aws iam create-policy \
+       --policy-name AWSLoadBalancerControllerIAMPolicy \
+       --policy-document file://iam_policy.json
+   ```
+
 3. Replace the values for cluster name, region code, and account ID.
-    
-    ```bash
-    eksctl create iamserviceaccount \
-        --cluster=<cluster-name> \
-        --namespace=kube-system \
-        --name=aws-load-balancer-controller \
-        --attach-policy-arn=arn:aws:iam::<AWS_ACCOUNT_ID>:policy/AWSLoadBalancerControllerIAMPolicy \
-        --override-existing-serviceaccounts \
-        --region <aws-region-code> \
-        --approve
-    ```
-    
+
+   ```bash
+   eksctl create iamserviceaccount \
+       --cluster=<cluster-name> \
+       --namespace=kube-system \
+       --name=aws-load-balancer-controller \
+       --attach-policy-arn=arn:aws:iam::<AWS_ACCOUNT_ID>:policy/AWSLoadBalancerControllerIAMPolicy \
+       --override-existing-serviceaccounts \
+       --region <aws-region-code> \
+       --approve
+   ```
 
 **Install AWS Load Balancer Controller**
 
 1. Add the `eks-charts` Helm chart repository. AWS maintains [this repository](https://github.com/aws/eks-charts) on GitHub.
-    
-    ```bash
-    helm repo add eks https://aws.github.io/eks-charts
-    ```
-    
+
+   ```bash
+   helm repo add eks https://aws.github.io/eks-charts
+   ```
+
 2. Update your local repo to make sure that you have the most recent charts.
-    
-    ```bash
-    helm repo update eks
-    ```
-    
+
+   ```bash
+   helm repo update eks
+   ```
+
 3. Install the AWS Load Balancer Controller.
-    - `-set region=region-code`
-    - `-set vpcId=vpc-xxxxxxxx`
-        
-        Replace `*my-cluster*` with the name of your cluster. In the following command, `aws-load-balancer-controller` is the Kubernetes service account that you created in a previous step.
-        
-        ```bash
-        helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller \
-          -n kube-system \
-          --set clusterName=test-terraform-cluster \
-          --set region=us-east-1 \
-          --set vpcId=vpc-045ed20a9ec483107 \
-          --set serviceAccount.create=false \
-          --set serviceAccount.name=aws-load-balancer-controller \
-          --set controllerConfig.featureGates.NLBGatewayAPI=true \
-          --set controllerConfig.featureGates.ALBGatewayAPI=true \
-          --version 3.0.0
-        ```
-        
+   - `-set region=region-code`
+   - `-set vpcId=vpc-xxxxxxxx`
+     Replace `*my-cluster*` with the name of your cluster. In the following command, `aws-load-balancer-controller` is the Kubernetes service account that you created in a previous step.
+     ```bash
+     helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller \
+       -n kube-system \
+       --set clusterName=test-terraform-cluster \
+       --set region=us-east-1 \
+       --set vpcId=vpc-045ed20a9ec483107 \
+       --set serviceAccount.create=false \
+       --set serviceAccount.name=aws-load-balancer-controller \
+       --set controllerConfig.featureGates.NLBGatewayAPI=true \
+       --set controllerConfig.featureGates.ALBGatewayAPI=true \
+       --version 3.0.0
+     ```
 
 **Verify that the controller is installed**
 
 1. Verify that the controller is installed.
-    
-    ```bash
-    kubectl get deployment -n kube-system aws-load-balancer-controller
-    ```
-    
-    An example output is as follows.
-    
-    ```bash
-    NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
-    aws-load-balancer-controller   2/2     2            2           84s
-    ```
-    
+
+   ```bash
+   kubectl get deployment -n kube-system aws-load-balancer-controller
+   ```
+
+   An example output is as follows.
+
+   ```bash
+   NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
+   aws-load-balancer-controller   2/2     2            2           84s
+   ```
 
 ## Gateway API
 
@@ -532,27 +529,21 @@ Docs: [https://kubernetes-sigs.github.io/aws-load-balancer-controller/latest/gui
 Installation of Gateway API CRDs
 
 - Standard Gateway API CRDs:  [REQUIRED]
-    
-    ```bash
-    kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.3.0/standard-install.yaml
-    ```
-    
+  ```bash
+  kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.3.0/standard-install.yaml
+  ```
 - Experimental Gateway API CRDs:  [OPTIONAL: Used for L4 Routes]
-    
-    ```bash
-    kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.3.0/experimental-install.yaml
-    ```
-    
+  ```bash
+  kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.3.0/experimental-install.yaml
+  ```
 - Installation of LBC Gateway API specific CRDs:
-    
-    ```bash
-    kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/refs/heads/main/config/crd/gateway/gateway-crds.yaml
-    ```
-    
+  ```bash
+  kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/refs/heads/main/config/crd/gateway/gateway-crds.yaml
+  ```
 
 > [!NOTE]
 >
->All the configs are already availbale in their respective directories, We can use them or copy from this guide and configure on your own.
+> All the configs are already availbale in their respective directories, We can use them or copy from this guide and configure on your own.
 
 Create a gateway class:
 
@@ -622,13 +613,13 @@ spec:
   - name: http
     protocol: HTTP
     port: 80
-    hostname: "*.devopsdock.site"
+    hostname: "*.devops.muminbashir.in"
     allowedRoutes:
       namespaces:
         from: All
   - name: https
     protocol: HTTPS
-    hostname: "*.devopsdock.site"
+    hostname: "*.devops.muminbashir.in"
     port: 443
     allowedRoutes:
       namespaces:
@@ -652,7 +643,7 @@ app-alb-gateway   aws-alb-gateway-class   k8s-default-appalbga-65aa25bc91-183881
 
 ## **Deploying External DNS:**
 
-Docs: 
+Docs:
 
 - [https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/aws.md#using-helm-with-oidc](https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/aws.md#using-helm-with-oidc)
 - [https://kubernetes-sigs.github.io/external-dns/v0.13.1/tutorials/gateway-api/#manifest-with-rbac](https://kubernetes-sigs.github.io/external-dns/v0.13.1/tutorials/gateway-api/#manifest-with-rbac) (How to setup with GatewayAPI)
@@ -697,7 +688,7 @@ aws iam create-policy --policy-name "AllowExternalDNSUpdates" --policy-document 
 # example: arn:aws:iam::XXXXXXXXXXXX:policy/AllowExternalDNSUpdates
 export POLICY_ARN=$(aws iam list-policies \
  --query 'Policies[?PolicyName==`AllowExternalDNSUpdates`].Arn' --output text)
- 
+
 export EKS_CLUSTER_NAME=test-terraform-cluster
 ```
 
@@ -791,7 +782,7 @@ helm upgrade -i external-dns external-dns/external-dns -f external-dns-values-1.
 
 ## Deploy ArgoCD
 
-Docs: [https://artifacthub.io/packages/helm/argo/argo-cd](https://artifacthub.io/packages/helm/argo/argo-cd) 
+Docs: [https://artifacthub.io/packages/helm/argo/argo-cd](https://artifacthub.io/packages/helm/argo/argo-cd)
 
 **Add ArgoCD repo**
 
@@ -807,7 +798,7 @@ helm show values argo/argo-cd --version 9.4.0 > argocd-values-9.4.0.yaml
 
 Modify the values file:
 
-Add this ”`server.insecure: true`”  line explicitly :
+Add this ”`server.insecure: true`” line explicitly :
 
 If TLS is terminated at the **Ingress / Load Balancer**, ArgoCD should run in **insecure mode** internally.
 
@@ -853,7 +844,7 @@ configs:
     # -- List of hostnames for the HTTPRoute
     # @default -- `[]` (See [values.yaml])
     hostnames:
-      - argocd.devopsdock.site
+      - argocd.devops.muminbashir.in
     # -- HTTPRoute rules configuration
     # @default -- `[]` (See [values.yaml])
     rules:
@@ -889,115 +880,110 @@ spec:
 Apply:
 
 ```bash
-kubectl apply -f target-grp-config.yaml 
+kubectl apply -f target-grp-config.yaml
 ```
 
-
 > [!NOTE]
->`TargetGroupConfiguration` is **ONLY** for:
+> `TargetGroupConfiguration` is **ONLY** for:
 >
->- ✅ **AWS Load Balancer Controller (LBC)**
->- ✅ **Gateway API backed by AWS ALB / NLB**
+> - ✅ **AWS Load Balancer Controller (LBC)**
+> - ✅ **Gateway API backed by AWS ALB / NLB**
 >
->It is **NOT required** (and not even used) by:
+> It is **NOT required** (and not even used) by:
 >
->- ❌ **kgateway**
->- ❌ Istio
->- ❌ Kong
->- ❌ NGINX Gateway / Ingress
->- ❌ Any non-AWS controller
+> - ❌ **kgateway**
+> - ❌ Istio
+> - ❌ Kong
+> - ❌ NGINX Gateway / Ingress
+> - ❌ Any non-AWS controller
 >
->So when you tried **kgateway**, it worked without this — that’s expected.
+> So when you tried **kgateway**, it worked without this — that’s expected.
 >
->---
+> ---
 >
->## Why this resource exists (AWS-specific problem)
+> ## Why this resource exists (AWS-specific problem)
 >
->AWS ALB / NLB have a **hard distinction** that most gateways don’t:
+> AWS ALB / NLB have a **hard distinction** that most gateways don’t:
 >
->| Target type | Meaning |
->| --- | --- |
->| `instance` | Send traffic to **EC2 nodes** |
->| `ip` | Send traffic directly to **pod IPs** |
+> | Target type | Meaning                              |
+> | ----------- | ------------------------------------ |
+> | `instance`  | Send traffic to **EC2 nodes**        |
+> | `ip`        | Send traffic directly to **pod IPs** |
 >
->Kubernetes **does not express this concept natively**.
+> Kubernetes **does not express this concept natively**.
 >
->So AWS had to invent a CRD to answer:
+> So AWS had to invent a CRD to answer:
 >
->> “How should I register targets for this Service?”
->> 
+> > “How should I register targets for this Service?”
 >
->That CRD is:
+> That CRD is:
 >
->```yaml
->TargetGroupConfiguration
->```
+> ```yaml
+> TargetGroupConfiguration
+> ```
 >
->Other gateways don’t have this problem because they:
+> Other gateways don’t have this problem because they:
 >
->- proxy inside the cluster
->- don’t integrate directly with AWS ELB target groups
+> - proxy inside the cluster
+> - don’t integrate directly with AWS ELB target groups
 >
->---
+> ---
 >
->## Controller comparison (this is the key insight)
+> ## Controller comparison (this is the key insight)
 >
->| Gateway / Controller | Needs TargetGroupConfiguration? | Why |
->| --- | --- | --- |
->| **AWS LBC (ALB / NLB)** | ✅ YES | ELB target type must be explicit |
->| **AWS Gateway API (ALB)** | ✅ YES | Same controller underneath |
->| **kgateway** | ❌ NO | Pure in-cluster proxy |
->| **Istio Gateway** | ❌ NO | Envoy → Service |
->| **NGINX Gateway** | ❌ NO | NGINX → Service |
->| **Kong Gateway** | ❌ NO | Kong → Service |
+> | Gateway / Controller      | Needs TargetGroupConfiguration? | Why                              |
+> | ------------------------- | ------------------------------- | -------------------------------- |
+> | **AWS LBC (ALB / NLB)**   | ✅ YES                          | ELB target type must be explicit |
+> | **AWS Gateway API (ALB)** | ✅ YES                          | Same controller underneath       |
+> | **kgateway**              | ❌ NO                           | Pure in-cluster proxy            |
+> | **Istio Gateway**         | ❌ NO                           | Envoy → Service                  |
+> | **NGINX Gateway**         | ❌ NO                           | NGINX → Service                  |
+> | **Kong Gateway**          | ❌ NO                           | Kong → Service                   |
 >
->So what you observed is **exactly correct behavior**.
+> So what you observed is **exactly correct behavior**.
 >
->---
+> ---
 >
->## Why it only shows up with Gateway API (and not always with Ingress)
+> ## Why it only shows up with Gateway API (and not always with Ingress)
 >
->This trips people up:
+> This trips people up:
 >
->- With **Ingress**, AWS LBC often **auto-infers** target type
->- With **Gateway API**, AWS requires **explicit config**
+> - With **Ingress**, AWS LBC often **auto-infers** target type
+> - With **Gateway API**, AWS requires **explicit config**
 >
->From AWS docs (paraphrased):
+> From AWS docs (paraphrased):
 >
->> Gateway API requires explicit target group configuration for deterministic behavior.
->> 
+> > Gateway API requires explicit target group configuration for deterministic behavior.
 >
->That’s why your Gateway worked *only after* adding `TargetGroupConfiguration`.
+> That’s why your Gateway worked _only after_ adding `TargetGroupConfiguration`.
 >
->---
+> ---
 >
->## Mental model to keep forever
+> ## Mental model to keep forever
 >
->> If traffic goes directly from AWS ELB → Kubernetes pods, you need TargetGroupConfiguration.
->> 
->- AWS ELB → Pod IPs → ✅ required
->- Pod → Pod (proxy) → ❌ not required
+> > If traffic goes directly from AWS ELB → Kubernetes pods, you need TargetGroupConfiguration.
 >
->---
+> - AWS ELB → Pod IPs → ✅ required
+> - Pod → Pod (proxy) → ❌ not required
 >
->## Practical rule you can use
+> ---
 >
->When using:
+> ## Practical rule you can use
 >
->- **GatewayClass = `aws-alb-gateway-class`**
->- **Service type = ClusterIP**
->- **Target type = ip**
+> When using:
 >
->👉 **TargetGroupConfiguration is mandatory**
+> - **GatewayClass = `aws-alb-gateway-class`**
+> - **Service type = ClusterIP**
+> - **Target type = ip**
 >
->For anything else → ignore it.
-
-
+> 👉 **TargetGroupConfiguration is mandatory**
+>
+> For anything else → ignore it.
 
 Access directly in the browser:
 
 ```bash
-https://argocd.devopsdock.site
+https://argocd.devops.muminbashir.in
 ```
 
 To get the password and user:
@@ -1013,7 +999,7 @@ user:admin
 
 You can change the auto generated password.
 
-Login → User info → Update Password 
+Login → User info → Update Password
 
 ```bash
 Argocd@xxx #Demo password
@@ -1038,7 +1024,6 @@ When you gave **Write access** under:
 You allowed:
 
 > “This repository is allowed to push/pull this package.”
-> 
 
 Think of it as:
 
@@ -1066,10 +1051,8 @@ mkdir -p .github/workflows
 
 Inside the `workflows` create two config file.
 
-
 > [!NOTE]
->These files are already available in the github repo. You just need to modify them and use them as per your need.
-
+> These files are already available in the github repo. You just need to modify them and use them as per your need.
 
 **`microservice-ci.yaml`**
 
@@ -1145,17 +1128,15 @@ jobs:
 
 > [!TIP]
 >
->### In the trivy scan part:
+> ### In the trivy scan part:
 >
->The exit-code is set to 0 intentionally just to pass the build. But its recommended to set to it 1. so that -
+> The exit-code is set to 0 intentionally just to pass the build. But its recommended to set to it 1. so that -
 >
->- If ANY HIGH or CRITICAL vulnerability is found → **fail the pipeline immediately.**
->- This is actually **best practice for financial / security-heavy companies.**
+> - If ANY HIGH or CRITICAL vulnerability is found → **fail the pipeline immediately.**
+> - This is actually **best practice for financial / security-heavy companies.**
 
-> [!NOTE] 
->You will get the scan report whether its set to 0 or 1.
-
-
+> [!NOTE]
+> You will get the scan report whether its set to 0 or 1.
 
 **`ci-trigger.yaml`**
 
@@ -1219,20 +1200,18 @@ jobs:
       service: ${{ matrix.service }}
 ```
 
-
 > [!NOTE]
->Here the permission in the file is different than the package permission which we set in the console in the previous step.
+> Here the permission in the file is different than the package permission which we set in the console in the previous step.
 >
->This controls what the **GITHUB_TOKEN is allowed to do.**
+> This controls what the **GITHUB_TOKEN is allowed to do.**
 >
->Think of it as:
+> Think of it as:
 >
->👉 **Keycard permissions**
+> 👉 **Keycard permissions**
 >
->Even if the door is open…
+> Even if the door is open…
 >
->If your keycard is read-only → you still cannot enter.
-
+> If your keycard is read-only → you still cannot enter.
 
 Now push the codes to the repo and try if the CI part is working.
 
@@ -1242,7 +1221,7 @@ Check the build success message.
 
 # Now Lets Move to the CD part.
 
-In the earlier step we have installed and exposed the argocd. 
+In the earlier step we have installed and exposed the argocd.
 
 Our application code , helm chart and Helm values are already in the repo.
 
@@ -1251,54 +1230,47 @@ Additionally to expose our application via Gateway API we need `httproute` and `
 In our case i kept in `microservices-extra-kube-manifests/` folder in the root directory.
 
 - **Create target group configurations for the app `frontend` service.**
-    
-    `microservices-extra-kube-manifests/target-grp.yaml`
-    
-    ```bash
-    #target group configuration
-    apiVersion: gateway.k8s.aws/v1beta1
-    kind: TargetGroupConfiguration
-    metadata:
-      name: app-tg-config
-      namespace: boutique-app
-    spec:
-      targetReference:
-        name: frontend
-      defaultConfiguration:
-        targetType: ip
-    ```
-  
-    
+  `microservices-extra-kube-manifests/target-grp.yaml`
+  ```bash
+  #target group configuration
+  apiVersion: gateway.k8s.aws/v1beta1
+  kind: TargetGroupConfiguration
+  metadata:
+    name: app-tg-config
+    namespace: boutique-app
+  spec:
+    targetReference:
+      name: frontend
+    defaultConfiguration:
+      targetType: ip
+  ```
 - **Create the HTTProute for the app so that it will get attached with the gateway and add as a listener in the load balancer.**
-    
-    `microservices-extra-kube-manifests/HTTProute.yaml` 
-    
-    ```bash
-    apiVersion: gateway.networking.k8s.io/v1beta1
-    kind: HTTPRoute
-    metadata:
-      name: http-app-route
-      namespace: boutique-app
-    spec:
-      hostnames:
-        - "app.devopsdock.site"
-      parentRefs:
-      - group: gateway.networking.k8s.io
-        namespace: default
-        kind: Gateway
-        name: app-alb-gateway
-        sectionName: http
-      - group: gateway.networking.k8s.io
-        namespace: default
-        kind: Gateway
-        name: app-alb-gateway
-        sectionName: https
-      rules:
-      - backendRefs:
-        - name: frontend
-          port: 80
-    ```
-    
+  `microservices-extra-kube-manifests/HTTProute.yaml`
+  ```bash
+  apiVersion: gateway.networking.k8s.io/v1beta1
+  kind: HTTPRoute
+  metadata:
+    name: http-app-route
+    namespace: boutique-app
+  spec:
+    hostnames:
+      - "app.devops.muminbashir.in"
+    parentRefs:
+    - group: gateway.networking.k8s.io
+      namespace: default
+      kind: Gateway
+      name: app-alb-gateway
+      sectionName: http
+    - group: gateway.networking.k8s.io
+      namespace: default
+      kind: Gateway
+      name: app-alb-gateway
+      sectionName: https
+    rules:
+    - backendRefs:
+      - name: frontend
+        port: 80
+  ```
 - ArgoCD can deploy **multiple sources from one repo** inside a single Application using `Kustomize`.
 - Kustomize render it as a single manifest file.
 
@@ -1328,13 +1300,11 @@ Think like this:
 
 > [!IMPORTANT]
 >
->**You do NOT need to install Kustomize in the cluster.**
+> **You do NOT need to install Kustomize in the cluster.**
 >
->👉 **Argo CD has built-in support for Kustomize.**
+> 👉 **Argo CD has built-in support for Kustomize.**
 >
->It renders Kustomize manifests internally inside the Argo CD repo-server before applying them to the cluster.
->
-
+> It renders Kustomize manifests internally inside the Argo CD repo-server before applying them to the cluster.
 
 Create a kustomize config file
 
@@ -1342,7 +1312,7 @@ Create a kustomize config file
 - You commit this file to Git.
 - Then ArgoCD does everything.
 
-**`kustomization.yaml`  (Root Dir)**
+**`kustomization.yaml` (Root Dir)**
 
 ```bash
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -1363,18 +1333,16 @@ helmCharts:
 
 > [!TIP]
 >
->## What Actually Happens Behind the Scenes
+> ## What Actually Happens Behind the Scenes
 >
->When you create an Argo CD Application that points to a Kustomize directory:
+> When you create an Argo CD Application that points to a Kustomize directory:
 >
->1. Argo CD repo-server clones your Git repo.
->2. It detects `kustomization.yaml`.
->3. Runs something equivalent to `kustomize build .`
->4. Sends the rendered manifests to the Kubernetes API.
+> 1.  Argo CD repo-server clones your Git repo.
+> 2.  It detects `kustomization.yaml`.
+> 3.  Runs something equivalent to `kustomize build .`
+> 4.  Sends the rendered manifests to the Kubernetes API.
 >
->👉 All of this happens **inside the Argo CD pod**, not your cluster nodes.
->
-
+> 👉 All of this happens **inside the Argo CD pod**, not your cluster nodes.
 
 ## Create our Argocd App
 
@@ -1458,80 +1426,69 @@ helm repo add argo https://argoproj.github.io/argo-helm
 
 > [!NOTE]
 >
->## Argo CD Image Updater – GitHub & Secret Requirements
+> ## Argo CD Image Updater – GitHub & Secret Requirements
 >
->Argo CD Image Updater can work in **two different modes**:
+> Argo CD Image Updater can work in **two different modes**:
 >
->1. **Live-state update (Argo CD API mode)**
->2. **Git write-back mode (true GitOps)**
+> 1.  **Live-state update (Argo CD API mode)**
+> 2.  **Git write-back mode (true GitOps)**
 >
->The **secrets and permissions required depend on the mode you choose**.
+> The **secrets and permissions required depend on the mode you choose**.
 >
->---
+> ---
 >
->## Current Setup: ImageUpdater CRD + `newest-build` (NO Git write-back)
+> ## Current Setup: ImageUpdater CRD + `newest-build` (NO Git write-back)
 >
->### What we are using ?
+> ### What we are using ?
 >
->- **ImageUpdater CRD**
->- `updateStrategy: newest-build`
->- **No `writeBack.method: git`**
->- Images updated via **Argo CD API**
->- Helm values updated **in live state only**
+> - **ImageUpdater CRD**
+> - `updateStrategy: newest-build`
+> - **No `writeBack.method: git`**
+> - Images updated via **Argo CD API**
+> - Helm values updated **in live state only**
 >
->### Flow
+> ### Flow
 >
->```
->CI pushesimage → GHCR
+> ```
+> CI pushesimage → GHCR
 >        ↓
->ImageUpdater detects newestimage
+> ImageUpdater detects newestimage
 >        ↓
->ImageUpdater patches Argo CD Application (K8s API)
+> ImageUpdater patches Argo CD Application (K8s API)
 >        ↓
->Argo CD deploys newimage
->```
-
-
+> Argo CD deploys newimage
+> ```
 
 ## If Your Repo Is Private
 
 As discussed argocd-image-updater needs permission to your github repo so that it can create update to the value files or push/pull new changes . **(Optional In this Case , Do this if its a private repo)**
 
 - You can use the same PAT which you used for CI, or else create a classic token with the below permission.
-    
-    ```bash
-    read:packages
-    write:pacakges
-    ```
-    
-    Then, create a secret and store the PAT and user name.
-    
-    ```bash
-    kubectl create secret docker-registry ghcr-secret \
-      --docker-server=ghcr.io \
-      --docker-username=YOUR_USERNAME \
-      --docker-password=YOUR_GITHUB_PAT \
-      -n argocd
-    ```
-    
-    Configure ArgoCD to Use That Secret
-    
-    ```bash
-    helm show values argo/argocd-image-updater --version 1.0.5 > argo-image-updater-values-1.0.5.yaml
-    ```
-    
-    Add the below configs in the `registries` section
-    
-    `vi argo-image-updater-values-1.0.5.yaml`
-    
-    ```bash
-    registries:
-        - name: ghcr
-          api_url: https://ghcr.io
-          prefix: ghcr.io
-          credentials: pullsecret:argocd/ghcr-secret
-    ```
-    
+  ```bash
+  read:packages
+  write:pacakges
+  ```
+  Then, create a secret and store the PAT and user name.
+  ```bash
+  kubectl create secret docker-registry ghcr-secret \
+    --docker-server=ghcr.io \
+    --docker-username=YOUR_USERNAME \
+    --docker-password=YOUR_GITHUB_PAT \
+    -n argocd
+  ```
+  Configure ArgoCD to Use That Secret
+  ```bash
+  helm show values argo/argocd-image-updater --version 1.0.5 > argo-image-updater-values-1.0.5.yaml
+  ```
+  Add the below configs in the `registries` section
+  `vi argo-image-updater-values-1.0.5.yaml`
+  ```bash
+  registries:
+      - name: ghcr
+        api_url: https://ghcr.io
+        prefix: ghcr.io
+        credentials: pullsecret:argocd/ghcr-secret
+  ```
 
 Install the chart:
 
@@ -1640,7 +1597,7 @@ Head to ArgoCD UI , and in separte tab run the CI pipeline or trigger it via chn
 
 ![image.png](docs/images/image%205.png)
 
-Access the website `app.devopsdock.site`
+Access the website `app.devops.muminbashir.in`
 
 It should be accessible.
 
@@ -1682,7 +1639,7 @@ Keep it public.
 
 ![image.png](docs/images/image%2010.png)
 
-After this is done 
+After this is done
 
 Go to [https://api.slack.com/apps](https://api.slack.com/apps) again.
 
@@ -1741,7 +1698,7 @@ kubectl get secret alertmanager-slack-webhook -n monitoring
 
 ### Kube-Prometheus-Stack
 
-Add `kube-prometheus-stack`  repo:
+Add `kube-prometheus-stack` repo:
 
 ```bash
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
@@ -1750,7 +1707,7 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 get the helm values and save it in a file:
 
 ```bash
-helm show values prometheus-community/kube-prometheus-stack --version 81.6.3 > observability/helm-values/kube-prom-stack-81.6.3.yaml 
+helm show values prometheus-community/kube-prometheus-stack --version 81.6.3 > observability/helm-values/kube-prom-stack-81.6.3.yaml
 ```
 
 Edit in `vi`
@@ -1792,291 +1749,292 @@ config:
 
 > [!TIP]
 >
->Let’s break it down clearly 👇
+> Let’s break it down clearly 👇
 >
->---
+> ---
 >
-># 1. `global`
+> # 1. `global`
 >
->```yaml
->global:resolve_timeout:5m
->```
+> ```yaml
+> global:resolve_timeout:5m
+> ```
 >
->- If Alertmanager stops receiving an alert firing signal,
->- It waits **5 minutes**
->- Then marks the alert as **resolved**
+> - If Alertmanager stops receiving an alert firing signal,
+> - It waits **5 minutes**
+> - Then marks the alert as **resolved**
 >
->So alerts don’t instantly disappear if there’s a short scrape failure.
+> So alerts don’t instantly disappear if there’s a short scrape failure.
 >
->---
+> ---
 >
-># 2.  `route` (Main Routing Logic)
+> # 2. `route` (Main Routing Logic)
 >
->This is the **core brain** of Alertmanager.
+> This is the **core brain** of Alertmanager.
 >
->```yaml
->route:group_by: ['namespace']group_wait:30sgroup_interval:5mrepeat_interval:12hreceiver:'slack-notification'
->```
+> ```yaml
+> route:group_by: ['namespace']group_wait:30sgroup_interval:5mrepeat_interval:12hreceiver:'slack-notification'
+> ```
 >
->### ✅ `group_by: ['namespace']`
+> ### ✅ `group_by: ['namespace']`
 >
->Alerts are grouped by **Kubernetes namespace**.
+> Alerts are grouped by **Kubernetes namespace**.
 >
->Meaning:
+> Meaning:
 >
->- If 5 alerts fire in `production`
->- They get grouped into one Slack message (instead of 5 separate messages)
+> - If 5 alerts fire in `production`
+> - They get grouped into one Slack message (instead of 5 separate messages)
 >
->---
+> ---
 >
->### ✅ `group_wait: 30s`
+> ### ✅ `group_wait: 30s`
 >
->Alertmanager waits **30 seconds** before sending the first notification.
+> Alertmanager waits **30 seconds** before sending the first notification.
 >
->Why?
+> Why?
 >
->To collect more alerts and group them.
+> To collect more alerts and group them.
 >
->---
+> ---
 >
->### ✅ `group_interval: 5m`
+> ### ✅ `group_interval: 5m`
 >
->If new alerts join the same group,
+> If new alerts join the same group,
 >
->Alertmanager waits **5 minutes** before sending an updated notification.
+> Alertmanager waits **5 minutes** before sending an updated notification.
 >
->---
+> ---
 >
->### ✅ `repeat_interval: 12h`
+> ### ✅ `repeat_interval: 12h`
 >
->If an alert is still firing,
+> If an alert is still firing,
 >
->It will resend the notification every **12 hours**.
+> It will resend the notification every **12 hours**.
 >
->Prevents Slack spam.
+> Prevents Slack spam.
 >
->---
+> ---
 >
->### ✅ `receiver: 'slack-notification'`
+> ### ✅ `receiver: 'slack-notification'`
 >
->Default receiver = Slack
+> Default receiver = Slack
 >
->If no sub-route matches → send to Slack.
+> If no sub-route matches → send to Slack.
 >
->---
+> ---
 >
-># 3. Sub-route (Severity Based)
+> # 3. Sub-route (Severity Based)
 >
->```yaml
->routes:-receiver:'slack-notification'matchers:-severity="critical"
->```
+> ```yaml
+> routes:-receiver:'slack-notification'matchers:-severity="critical"
+> ```
 >
->This means:
+> This means:
 >
->👉 If alert label contains:
+> 👉 If alert label contains:
 >
->```
->severity="critical"
->```
+> ```
+> severity="critical"
+> ```
 >
->It goes to `slack-notification`.
+> It goes to `slack-notification`.
 >
->⚠️ In your case this is redundant because default receiver is already Slack.
+> ⚠️ In your case this is redundant because default receiver is already Slack.
 >
->In real setups you might see:
+> In real setups you might see:
 >
->- Critical → PagerDuty
->- Warning → Slack
->- Info → Email
+> - Critical → PagerDuty
+> - Warning → Slack
+> - Info → Email
 >
->---
+> ---
 >
-># 4. Receivers (Where Alerts Go)
+> # 4. Receivers (Where Alerts Go)
 >
->```yaml
->receivers:-name:'slack-notification'slack_configs:
->```
+> ```yaml
+> receivers:-name:'slack-notification'slack_configs:
+> ```
 >
->Defines the actual notification method.
+> Defines the actual notification method.
 >
->---
+> ---
 >
->### Slack Config
+> ### Slack Config
 >
->```yaml
->api_url:'https://hooks.slack.com/services/...'channel:'#alerts'send_resolved:true
->```
+> ```yaml
+> api_url:'https://hooks.slack.com/services/...'channel:'#alerts'send_resolved:true
+> ```
 >
->- `api_url` → Slack Webhook URL
->- `channel` → Slack channel to post in
->- `send_resolved: true` → Sends message when alert is fixed
+> - `api_url` → Slack Webhook URL
+> - `channel` → Slack channel to post in
+> - `send_resolved: true` → Sends message when alert is fixed
 >
->So Slack gets:
+> So Slack gets:
 >
->🔥 Firing alert
+> 🔥 Firing alert
 >
->✅ Resolved alert
+> ✅ Resolved alert
 >
->---
+> ---
 >
-># 5. Templates
+> # 5. Templates
 >
->```yaml
->templates:-'/etc/alertmanager/config/*.tmpl'
->```
+> ```yaml
+> templates:-'/etc/alertmanager/config/*.tmpl'
+> ```
 >
->This allows custom message formatting.
+> This allows custom message formatting.
 >
->You can define:
+> You can define:
 >
->- Custom Slack message layout
->- Add emojis
->- Show pod name, namespace, cluster name
->- Format nicely for production
+> - Custom Slack message layout
+> - Add emojis
+> - Show pod name, namespace, cluster name
+> - Format nicely for production
 >
->---
->
+> ---
 
 > [!TIP]
->**Prometheus alert rules set the severity label.**
+> **Prometheus alert rules set the severity label.**
 >
->Alertmanager only reads it and routes based on it.
+> Alertmanager only reads it and routes based on it.
 >
->Alertmanager does NOT decide what is critical.
+> Alertmanager does NOT decide what is critical.
 >
->---
+> ---
 >
-># How It Actually Works (End-to-End Flow)
+> # How It Actually Works (End-to-End Flow)
 >
->### 1. Application exposes metrics
+> ### 1. Application exposes metrics
 >
->Example:
+> Example:
 >
->```
->http_requests_total
->pod_memory_usage_bytes
->up
->```
+> ```
+> http_requests_total
+> pod_memory_usage_bytes
+> up
+> ```
 >
->---
+> ---
 >
->### 2. Prometheus scrapes those metrics
+> ### 2. Prometheus scrapes those metrics
 >
->From:
+> From:
 >
->- Pods
->- Services
->- Nodes
->- Kubernetes API
->- etc.
+> - Pods
+> - Services
+> - Nodes
+> - Kubernetes API
+> - etc.
 >
->---
+> ---
 >
->### 3. Alert Rules Define When Something Is Critical
+> ### 3. Alert Rules Define When Something Is Critical
 >
->Inside kube-prometheus-stack, there are many alert rules like:
+> Inside kube-prometheus-stack, there are many alert rules like:
 >
->```yaml
->-alert:PodCrashLoopingexpr:kube_pod_container_status_restarts_total>5for:5mlabels:severity:criticalannotations:description:Podisrestartingfrequently
->```
+> ```yaml
+> -alert:PodCrashLoopingexpr:kube_pod_container_status_restarts_total>5for:5mlabels:severity:criticalannotations:description:Podisrestartingfrequently
+> ```
 >
->🚨 THIS is where `severity="critical"` is defined.
+> 🚨 THIS is where `severity="critical"` is defined.
 >
->Prometheus says:
+> Prometheus says:
 >
->"If this condition is true → create an alert
+> "If this condition is true → create an alert
 >
->and attach label `severity=critical`"
+> and attach label `severity=critical`"
 >
->---
+> ---
 >
->### 4. Prometheus Sends Alert to Alertmanager
+> ### 4. Prometheus Sends Alert to Alertmanager
 >
->When the condition becomes true:
+> When the condition becomes true:
 >
->```json
->{"alertname":"PodCrashLooping","severity":"critical","namespace":"production"}
->```
+> ```json
+> {
+>   "alertname": "PodCrashLooping",
+>   "severity": "critical",
+>   "namespace": "production"
+> }
+> ```
 >
->Prometheus pushes this to Alertmanager.
+> Prometheus pushes this to Alertmanager.
 >
->---
+> ---
 >
->### 5. Alertmanager Routes Based on Labels
+> ### 5. Alertmanager Routes Based on Labels
 >
->Now your config says:
+> Now your config says:
 >
->```yaml
->matchers:-severity="critical"
->```
+> ```yaml
+> matchers:-severity="critical"
+> ```
 >
->So Alertmanager checks:
+> So Alertmanager checks:
 >
->IF severity == critical
+> IF severity == critical
 >
->→ send to slack-notification
+> → send to slack-notification
 >
->---
+> ---
 >
-># Example Real Scenario
+> # Example Real Scenario
 >
->Imagine:
+> Imagine:
 >
->```
->kube_node_status_condition{condition="Ready",status="true"} ==0
->```
+> ```
+> kube_node_status_condition{condition="Ready",status="true"} ==0
+> ```
 >
->If a node goes NotReady → rule fires:
+> If a node goes NotReady → rule fires:
 >
->```yaml
->labels:severity:critical
->```
+> ```yaml
+> labels:severity:critical
+> ```
 >
->Alertmanager sees:
+> Alertmanager sees:
 >
->```
->severity="critical"
->```
+> ```
+> severity="critical"
+> ```
 >
->Matches your route → sends to Slack 
+> Matches your route → sends to Slack
 >
->---
+> ---
 >
-># So Who Decides Critical?
+> # So Who Decides Critical?
 >
->Not:
+> Not:
 >
->- App
->- Service
->- Kubernetes
+> - App
+> - Service
+> - Kubernetes
 >
->But:
+> But:
 >
->✔ Prometheus alert rule labels
+> ✔ Prometheus alert rule labels
 >
->---
+> ---
 >
-># In kube-prometheus-stack
+> # In kube-prometheus-stack
 >
->Most default rules already include severity labels like:
+> Most default rules already include severity labels like:
 >
->- critical
->- warning
->- info
+> - critical
+> - warning
+> - info
 >
->You can check them:
+> You can check them:
 >
->```bash
->kubectl get prometheusrules -n monitoring
->```
+> ```bash
+> kubectl get prometheusrules -n monitoring
+> ```
 >
->Or:
+> Or:
 >
->```bash
->kubectl describe prometheusrule <rule-name> -n monitoring
->```
->
-
+> ```bash
+> kubectl describe prometheusrule <rule-name> -n monitoring
+> ```
 
 Install:
 
@@ -2120,7 +2078,7 @@ metadata:
   namespace: monitoring
 spec:
   hostnames:
-    - "grafana.devopsdock.site"
+    - "grafana.devops.muminbashir.in"
   parentRefs:
   - group: gateway.networking.k8s.io
     namespace: default
@@ -2150,7 +2108,7 @@ metadata:
   namespace: monitoring
 spec:
   targetReference:
-    name: kube-prometheus-stack-grafana 
+    name: kube-prometheus-stack-grafana
   defaultConfiguration:
     targetType: ip
 
@@ -2203,7 +2161,7 @@ metadata:
   namespace: monitoring
 spec:
   hostnames:
-    - "prometheus.devopsdock.site"
+    - "prometheus.devops.muminbashir.in"
   parentRefs:
   - group: gateway.networking.k8s.io
     namespace: default
@@ -2231,7 +2189,7 @@ metadata:
   namespace: monitoring
 spec:
   targetReference:
-    name: kube-prometheus-stack-prometheus 
+    name: kube-prometheus-stack-prometheus
   defaultConfiguration:
     targetType: ip
 ```
@@ -2258,8 +2216,8 @@ prometheus-tg-config   kube-prometheus-stack-prometheus   44s
 kubectl get httproute -n monitoring
 
 NAME               HOSTNAMES                   AGE
-grafana-route      ["grafana.devopsdock.site"]      30m
-prometheus-route   ["prometheus.devopsdock.site"]   41s
+grafana-route      ["grafana.devops.muminbashir.in"]      30m
+prometheus-route   ["prometheus.devops.muminbashir.in"]   41s
 ```
 
 Head to the browser and access it:
@@ -2294,8 +2252,6 @@ List all the addons to verify:
 aws eks list-addons --cluster-name <cluster name>
 ```
 
-
-
 Create an IAM role and attach a policy. AWS maintains an AWS managed policy or you can create your own custom policy. You can create an IAM role and attach the AWS managed policy with the following command. Replace `*my-cluster*` with the name of your cluster. The command deploys an AWS CloudFormation stack that creates an IAM role and attaches the IAM policy to it.
 
 Run:
@@ -2309,12 +2265,15 @@ eksctl create iamserviceaccount \
    --override-existing-serviceaccounts \
    --approve
 ```
-Make sure EBS csi driver is added. 
+
+Make sure EBS csi driver is added.
 Take the role name from the cloudformation template output.
+
 ```
 eksctl create addon --cluster terraform-cluster --name aws-ebs-csi-driver --version latest \
     --service-account-role-arn arn:aws:iam::224075521056:role/eksctl-terraform-cluster-addon-iamserviceacco-Role1-AXN8WDL6k09R --force
 ```
+
 make sure all the pods are running:
 
 ```bash
@@ -2344,7 +2303,7 @@ helm install eck-operator elastic/eck-operator --version 3.3.0 -n logging
 
 Create a storageclass so that elastic search can dynamically provision volume in AWS.
 
- **vi `observability/storageclass.yaml`** 
+**vi `observability/storageclass.yaml`**
 
 ```
 apiVersion: storage.k8s.io/v1
@@ -2361,7 +2320,7 @@ volumeBindingMode: WaitForFirstConsumer
 apply the yaml file.
 
 ```bash
-kubectl apply -f observability/storageclass.yaml 
+kubectl apply -f observability/storageclass.yaml
 ```
 
 See the storage class, you should see 2 storage classes
@@ -2370,10 +2329,10 @@ one is default another one we just have created and set to default.
 
 ```bash
 kubectl  get storageclass
- 
+
 NAME                PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
 ebs-aws (default)   ebs.csi.aws.com         Delete          WaitForFirstConsumer   false                  6s
-gp2                 kubernetes.io/aws-ebs   Delete          WaitForFirstConsumer   false 
+gp2                 kubernetes.io/aws-ebs   Delete          WaitForFirstConsumer   false
 ```
 
 ### Now Lets install the ECK- Components which the operator will manage:
@@ -2482,7 +2441,7 @@ daemonSet:
           - mountPath: /var/log/pods
             name: varlogpods
           - mountPath: /var/lib/docker/containers
-            name: varlibdockercontainers  
+            name: varlibdockercontainers
       volumes:
         - name: varlogcontainers
           hostPath:
@@ -2568,17 +2527,14 @@ clusterRole:
 
 Make sure your values matche to the above config.
 
-
-
 > [!NOTE]
 >
->The reference should match to the elasticsearch CR name.
+> The reference should match to the elasticsearch CR name.
 >
->```bash
->elasticsearchRef:
+> ```bash
+> elasticsearchRef:
 >  name: eck-elasticsearch
->```
-
+> ```
 
 Install:
 
@@ -2635,7 +2591,7 @@ Install:
 helm install eck-kibana elastic/eck-kibana --version 0.18.0 -f observability/helm-values/eck-kibana-0.18.0.yaml -n logging
 ```
 
-It takes some time to run the pod and the CR, After 2-3 minutes check 
+It takes some time to run the pod and the CR, After 2-3 minutes check
 
 ```bash
 kubectl get kibana -n logging
@@ -2670,7 +2626,7 @@ metadata:
   namespace: logging
 spec:
   hostnames:
-    - "kibana.devopsdock.site"
+    - "kibana.devops.muminbashir.in"
   parentRefs:
   - group: gateway.networking.k8s.io
     namespace: default
@@ -2717,7 +2673,7 @@ metadata:
   namespace: logging
 spec:
   targetReference:
-    name: eck-kibana-kb-http 
+    name: eck-kibana-kb-http
   defaultConfiguration:
     targetType: ip
     protocol: HTTPS
@@ -2741,7 +2697,7 @@ Verify:
 ```bash
 kubectl get httproute -n logging
 NAME           HOSTNAMES               AGE
-kibana-route   ["kibana.devopsdock.site"]   74s
+kibana-route   ["kibana.devops.muminbashir.in"]   74s
 ```
 
 ```bash
@@ -2754,7 +2710,7 @@ Head to the browser and access you kibana UI using the host name “`kibana.dsva
 
 ![image.png](docs/images/image%2028.png)
 
-The defaukt user is  **`elastic` .** Get you password from the below command
+The defaukt user is **`elastic` .** Get you password from the below command
 
 ```bash
 kubectl get secret eck-elasticsearch-es-elastic-user -n logging -o go-template='{{.data.elastic | base64decode}}'
@@ -2766,7 +2722,7 @@ Go to discover section:
 
 In search field section search for “`namespace`” and the select `kubernetes.namespace`
 
-Click on that and select your app namepsace 
+Click on that and select your app namepsace
 
 ![image.png](docs/images/image%2030.png)
 
@@ -2855,25 +2811,25 @@ Confirm that metric server is working by running:
 ```bash
 kubectl top nodes
 
-NAME                         CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)   
-ip-10-0-1-64.ec2.internal    90m          4%       2150Mi          68%         
-ip-10-0-2-253.ec2.internal   44m          2%       2576Mi          82%         
-ip-10-0-3-56.ec2.internal    116m         6%       2322Mi          73% 
+NAME                         CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)
+ip-10-0-1-64.ec2.internal    90m          4%       2150Mi          68%
+ip-10-0-2-253.ec2.internal   44m          2%       2576Mi          82%
+ip-10-0-3-56.ec2.internal    116m         6%       2322Mi          73%
 
 kubectl top pods -n boutique-app
 
-NAME                                     CPU(cores)   MEMORY(bytes)   
-adservice-68f9bcd546-qt5pw               2m           101Mi           
-cartservice-6b848f4d6b-86gns             3m           71Mi            
-checkoutservice-d76f9996b-7fzzt          1m           10Mi            
-currencyservice-5d47fbbcbd-q4fsl         5m           37Mi            
-emailservice-fffd8bb8c-jfnsq             2m           39Mi            
-frontend-57c5fdc47c-v2hls                8m           14Mi            
-loadgenerator-7f56fdb774-bcl4s           3m           76Mi            
-paymentservice-75c7596665-jnz8h          1m           126Mi           
-productcatalogservice-78f985f9cd-fg2ls   4m           9Mi             
-recommendationservice-6685dcbd7d-xwlsz   4m           41Mi            
-redis-cart-8649b96fbb-vw2bw              2m           6Mi             
+NAME                                     CPU(cores)   MEMORY(bytes)
+adservice-68f9bcd546-qt5pw               2m           101Mi
+cartservice-6b848f4d6b-86gns             3m           71Mi
+checkoutservice-d76f9996b-7fzzt          1m           10Mi
+currencyservice-5d47fbbcbd-q4fsl         5m           37Mi
+emailservice-fffd8bb8c-jfnsq             2m           39Mi
+frontend-57c5fdc47c-v2hls                8m           14Mi
+loadgenerator-7f56fdb774-bcl4s           3m           76Mi
+paymentservice-75c7596665-jnz8h          1m           126Mi
+productcatalogservice-78f985f9cd-fg2ls   4m           9Mi
+recommendationservice-6685dcbd7d-xwlsz   4m           41Mi
+redis-cart-8649b96fbb-vw2bw              2m           6Mi
 shippingservice-586996844-jncl4          1m           9Mi
 ```
 
@@ -2919,12 +2875,12 @@ spec:
   minReplicas: 1
   maxReplicas: 6
   metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 5
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 5
 ```
 
 Intentionally kept the `averageUtilization` to 5. Explained in the later steps.
@@ -3003,43 +2959,40 @@ We must modify the value in Git — not in the cluster.
 
 > [!IMPORTANT]
 >
+> ## HPA Configuration in a GitOps-Managed Environment
 >
->## HPA Configuration in a GitOps-Managed Environment
+> Since the application is managed using GitOps (via Argo CD), all configuration changes must follow the Git workflow.
 >
->Since the application is managed using GitOps (via Argo CD), all configuration changes must follow the Git workflow.
+> - If the HPA configuration is defined in the Helm values file → ✅ This is the correct approach.
+> - If changes are made directly in the cluster using `kubectl edit` → ❌ Argo CD will automatically revert them to match the Git repository.
 >
->- If the HPA configuration is defined in the Helm values file → ✅ This is the correct approach.
->- If changes are made directly in the cluster using `kubectl edit` → ❌ Argo CD will automatically revert them to match the Git repository.
+> ### Correct Process
 >
->### Correct Process
+> 1.  Update the HPA configuration in the Helm values file.
+> 2.  Commit and push the changes to the Git repository.
+> 3.  Allow Argo CD to sync and apply the updated configuration to the cluster.
 >
->1. Update the HPA configuration in the Helm values file.
->2. Commit and push the changes to the Git repository.
->3. Allow Argo CD to sync and apply the updated configuration to the cluster.
+> ---
 >
->---
+> ## Testing HPA Behavior
 >
->## Testing HPA Behavior
+> For testing purposes, the `averageUtilization` was reduced from 50% to 5%.
 >
->For testing purposes, the `averageUtilization` was reduced from 50% to 5%.
+> Setting such a low value ensures:
 >
->Setting such a low value ensures:
+> - Even minimal CPU usage will exceed the threshold.
+> - HPA will trigger scaling quickly.
+> - It becomes easy to verify that autoscaling is functioning correctly.
 >
->- Even minimal CPU usage will exceed the threshold.
->- HPA will trigger scaling quickly.
->- It becomes easy to verify that autoscaling is functioning correctly.
+> This configuration is **only for testing and demonstration purposes**.
 >
->This configuration is **only for testing and demonstration purposes**.
+> In a real production environment:
 >
->In a real production environment:
+> - CPU thresholds would be carefully tuned.
+> - Scaling decisions would be based on realistic load patterns.
+> - Extremely low utilization targets like 5% would not be used.
 >
->- CPU thresholds would be carefully tuned.
->- Scaling decisions would be based on realistic load patterns.
->- Extremely low utilization targets like 5% would not be used.
->
->The goal here is simply to validate that the HPA mechanism is working as expected.
->
-
+> The goal here is simply to validate that the HPA mechanism is working as expected.
 
 ### STEP 5 — Watch Scaling
 
@@ -3127,17 +3080,18 @@ Same HPA structure, just change `name`.
 
 ---
 
->## 🎉 Congratulations!
+> ## 🎉 Congratulations!
 >
->If you’ve made it this far and successfully deployed the application — well done!
+> If you’ve made it this far and successfully deployed the application — well done!
 >
->You’ve just completed a full hands-on implementation. Keep going and keep building 🚀
+> You’ve just completed a full hands-on implementation. Keep going and keep building 🚀
 
 ---
 
 ---
 
 # CleanUp
+
 Delete the load balancer and its security groups first in the UI.
 
 then,
@@ -3147,12 +3101,19 @@ Run in the local machine (Where you intially ran terraform):
 ```bash
 terraform destroy -auto-approve
 ```
+
 ---
+
 ---
+
 ---
+
 ---
+
 # FAQs
+
 ## How to push the images to GHCR (Github Container Registry) ?
+
 <details>
 
 <summary>Click to get Answer</summary>
@@ -3190,10 +3151,10 @@ docker tag us-central1-docker.pkg.dev/google-samples/microservices-demo/adservic
 Push the image:
 
 ```bash
-  docker push ghcr.io/laxmikantagiri/microservices-demo/adservice:v0.10.4 
+  docker push ghcr.io/laxmikantagiri/microservices-demo/adservice:v0.10.4
 ```
-</details>
 
+</details>
 
 ## How to create the helm package and store it in the GHCR ?
 
@@ -3202,6 +3163,7 @@ Push the image:
 <summary>Click to get Answer</summary>
 
 ### Step 1 - Create Token
+
 Create a PAT clasic token with the below permission.
 
 Give permissions:
@@ -3264,7 +3226,7 @@ Do :
 helm package .
 ```
 
-You will see the package will get created with `.tgz`  format
+You will see the package will get created with `.tgz` format
 
 ```bash
 ubuntu@ip-10-0-101-164:~/Production-Grade_GitOps-Driven_Microservices-Demo/helm-chart$ ls
@@ -3284,10 +3246,15 @@ Now you can directly install the package using the below command
 ```bash
 helm install boutique oci://ghcr.io/laxmikantagiri/onlineboutique --version 0.10.4
 ```
+
 </details>
 
 ---
+
 ---
+
                                         End
+
 ---
+
 ---
