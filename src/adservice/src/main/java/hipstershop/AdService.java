@@ -85,7 +85,6 @@ public final class AdService {
 
     /**
      * Retrieves ads based on context provided in the request {@code AdRequest}.
-     *
      * @param req the request containing context.
      * @param responseObserver the stream observer which gets notified with the value of {@code
      *     AdResponse}
